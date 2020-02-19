@@ -33,3 +33,16 @@ export const postContact = async contact => {
   }
   console.log(data);
 };
+export const getContacts = async () => {
+  console.log("getContacts called");
+  const res = await fetch("/list", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+  const contacts = await res.json();
+  console.log(contacts);
+  console.log(contacts.length);
+  return contacts;
+};

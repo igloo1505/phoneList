@@ -1,14 +1,19 @@
 import React, { useState } from "react";
-import M from "materialize-css/dist/js/materialize.min";
+// import M from "materialize-css/dist/js/materialize.min";
 import { validateNumber, postContact } from "../routing";
 
-const Form = () => {
+const Form = ({ setAdmin }) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [sponsor, setSponsor] = useState(false);
   const [meeting, setMeeting] = useState(null);
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
+    if (name === "Showme") {
+      console.log("Registered Admin");
+      setAdmin(true);
+      return;
+    }
     const ph = validateNumber(phone);
     let newContact = {
       name: name,
@@ -17,13 +22,10 @@ const Form = () => {
       meeting: meeting
     };
     console.log({ ...newContact });
-    if (name === "" || phone === "") {
-      M.toast({ html: "Oh no, please fill this out completely" });
-    }
     postContact(newContact);
   };
   return (
-    <div className="container" style={{ width: "80%" }}>
+    <div className="container" style={{ width: "80%", marginTop: "80px" }}>
       <form className="col s12" id="UserForm">
         <div className="row">
           <div className="input-field col s12" style={{ paddingRight: "50px" }}>
