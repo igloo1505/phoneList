@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://Aiglinski:Bigmilly1@list-0ftmk.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "ShhThisIsASecret"
+}
