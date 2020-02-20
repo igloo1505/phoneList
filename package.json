@@ -21,7 +21,8 @@
     "eject": "react-scripts eject",
     "server": "Node Server.js",
     "local": "nodemon Server.js",
-    "dev": "concurrently \"npm run start\" \"npm run local\""
+    "dev": "concurrently \"npm run start\" \"npm run local\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
