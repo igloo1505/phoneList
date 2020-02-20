@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 const Filter = ({ dataList, setFiltered, contacts }) => {
   const [search, setSearch] = useState("");
-  //   const Search = e => {
+
   const onChange = e => {
-    setSearch(e.target.value);
+    // setSearch(e.target.value);
     let v = e.target.value;
     const regex = new RegExp(v, "gi");
     let f = contacts.filter(contact => contact.meeting.match(regex));

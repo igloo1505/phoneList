@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.19.2",
     "cors": "^2.8.5",
     "materialize-css": "^1.0.0",
     "mongoose": "^5.9.1",
@@ -20,7 +21,7 @@
     "eject": "react-scripts eject",
     "server": "Node Server.js",
     "local": "nodemon Server.js",
-    "Dev": "concurrently \"npm run server\" \"npm run local\""
+    "dev": "concurrently \"npm run start\" \"npm run local\""
   },
   "eslintConfig": {
     "extends": "react-app"

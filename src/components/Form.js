@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-// import M from "materialize-css/dist/js/materialize.min";
+import M from "materialize-css/dist/js/materialize.min";
 import { validateNumber, postContact } from "../routing";
 
 const Form = ({ setAdmin }) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [sponsor, setSponsor] = useState(false);
-  const [meeting, setMeeting] = useState(null);
+  const [meeting, setMeeting] = useState("which");
 
   const onSubmit = () => {
     if (name === "Showme") {
       console.log("Registered Admin");
       setAdmin(true);
+      return;
+    } else if (meeting === "which") {
+      M.toast({ html: "Pick a meeting bro." });
       return;
     }
     const ph = validateNumber(phone);
@@ -23,6 +26,10 @@ const Form = ({ setAdmin }) => {
     };
     console.log({ ...newContact });
     postContact(newContact);
+    setName("");
+    setPhone("");
+    setSponsor(false);
+    setMeeting("which");
   };
   return (
     <div className="container" style={{ width: "80%", marginTop: "80px" }}>
@@ -33,6 +40,7 @@ const Form = ({ setAdmin }) => {
             <input
               id="name"
               type="text"
+              value={name}
               className="validate"
               onChange={e => setName(e.target.value)}
             />
@@ -43,6 +51,7 @@ const Form = ({ setAdmin }) => {
             <input
               id="phone"
               type="text"
+              value={phone}
               className="validate"
               onChange={e => setPhone(e.target.value)}
             />
@@ -54,7 +63,7 @@ const Form = ({ setAdmin }) => {
           >
             <select
               id="meeting"
-              defaultValue="which"
+              value={meeting}
               onChange={e => setMeeting(e.target.value)}
             >
               <option value="which" disabled>
@@ -70,7 +79,7 @@ const Form = ({ setAdmin }) => {
               <input
                 type="checkbox"
                 id="sponsor"
-                value="false"
+                value={sponsor}
                 onChange={e => setSponsor(!sponsor)}
                 checked={sponsor}
               />
@@ -88,7 +97,7 @@ const Form = ({ setAdmin }) => {
             }}
             type="submit"
             name="submit"
-            onClick={() => onSubmit()}
+            onClick={onSubmit}
           >
             Submit
           </button>

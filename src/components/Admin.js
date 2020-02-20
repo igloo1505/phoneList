@@ -7,7 +7,7 @@ const Admin = () => {
   const [loading, setLoading] = useState(false);
   const [filtered, setFiltered] = useState(null);
   const [contacts, setContacts] = useState(null);
-  //   const [datalist, setDataList] = useState([]);
+
   let dataList = [];
   useEffect(() => {
     setLoading(true);
@@ -38,8 +38,11 @@ const Admin = () => {
         setFiltered={setFiltered}
         contacts={contacts}
       />
-      <ul className="collection" style={{ width: "80%", margin: "auto" }}>
-        <h1 className="center">Filter here later</h1>
+      <ul
+        className="collection"
+        style={{ width: "80%", margin: "auto", marginBottom: "20px" }}
+      >
+        <h5 className="center">Milwaukee Phone List</h5>
         {contacts !== null
           ? output.map(contact => (
               <ContactItem contact={contact} key={contact._id} />

@@ -4,9 +4,8 @@ const ContactItem = ({ contact }) => {
   return (
     <li className="collection-item">
       <span>{contact.name}</span>
-      <span className="right" style={{ paddingLeft: "20px" }}>
-        {contact.phone}
-      </span>
+      <br />
+      <span style={{ paddingLeft: "20px" }}>{contact.phone}</span>
       {contact.sponsor ? (
         <i className="material-icons right green-text">check_circle</i>
       ) : (

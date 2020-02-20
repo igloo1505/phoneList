@@ -1,4 +1,12 @@
 import M from "materialize-css/dist/js/materialize.min";
+import Axios from "axios";
+
+const config = {
+  headers: {
+    "Content-Type": "application/json"
+  }
+};
+
 export const validateNumber = phone => {
   let ph = "";
 
@@ -12,27 +20,28 @@ export const validateNumber = phone => {
   return phone;
 };
 export const postContact = async contact => {
-  const res = await fetch("/list", {
-    method: "POST",
-    mode: "cors",
-    body: JSON.stringify(contact),
-    headers: {
-      "Content-Type": "application/json"
+  console.log("posting");
+  try {
+    const res = await Axios.post("/list", contact, config);
+
+    console.log(res);
+    if (res.status === 200) {
+      M.toast({
+        html: `Thank you, you were successfully added to the phone list.`
+      });
+    } else if (res.status === 500) {
+      M.toast({
+        html: "Ah shit. Something went wrong."
+      });
     }
-  });
-  const data = await res;
-  console.log(data.status);
-  if (data.status === 200) {
-    M.toast({
-      html: `Thank you, you were successfully added to the phone list.`
-    });
-  } else if (data.status === 500) {
+  } catch (error) {
     M.toast({
       html: "Ah shit. Something went wrong."
     });
+    console.error(error.message);
   }
-  console.log(data);
 };
+
 export const getContacts = async () => {
   console.log("getContacts called");
   const res = await fetch("/list", {
