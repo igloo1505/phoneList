@@ -1,26 +1,52 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import ContactItem from "./ContactItem";
-import { getContacts } from "../routing";
+import Filter from "./Filter";
+import { getContacts, getDatalist } from "../routing";
 
 const Admin = () => {
-  const [contacts, setContacts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [filtered, setFiltered] = useState(null);
+  const [contacts, setContacts] = useState(null);
+  //   const [datalist, setDataList] = useState([]);
+  let dataList = [];
   useEffect(() => {
+    setLoading(true);
     const get = async () => {
-      const contacts = await getContacts();
-      setContacts(contacts);
+      const gotContacts = await getContacts();
+      setContacts(gotContacts);
     };
     get();
+    setLoading(false);
     // es-lint-disable-next-line
   }, []);
+  let output = [];
+  if (filtered !== null) {
+    output = filtered;
+    console.log({ ...output });
+  } else {
+    output = contacts;
+    console.log({ ...output });
+  }
+  if (contacts !== null && loading === false) {
+    dataList = getDatalist(contacts);
+    console.log(getDatalist(contacts));
+  }
   return (
-    <ul className="collection" style={{ width: "80%", margin: "auto" }}>
-      <h1 className="center">Filter here later</h1>
-      {contacts.length > 0
-        ? contacts.map(contact => (
-            <ContactItem contact={contact} key={contact._id} />
-          ))
-        : ""}
-    </ul>
+    <Fragment>
+      <Filter
+        dataList={dataList}
+        setFiltered={setFiltered}
+        contacts={contacts}
+      />
+      <ul className="collection" style={{ width: "80%", margin: "auto" }}>
+        <h1 className="center">Filter here later</h1>
+        {contacts !== null
+          ? output.map(contact => (
+              <ContactItem contact={contact} key={contact._id} />
+            ))
+          : ""}
+      </ul>
+    </Fragment>
   );
 };
 
