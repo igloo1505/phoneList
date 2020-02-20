@@ -1,21 +1,21 @@
-import React, { useEffect, useState, Fragment } from "react";
+import React, { useEffect, useState, Fragment, useContext } from "react";
+import ContactContext from "../context/contactContext";
 import ContactItem from "./ContactItem";
 import Filter from "./Filter";
-import { getContacts, getDatalist } from "../routing";
+import { getDatalist, getContacts } from "../routing";
 
 const Admin = () => {
+  const contactContext = useContext(ContactContext);
+  const { getContacts, contacts } = contactContext;
   const [loading, setLoading] = useState(false);
   const [filtered, setFiltered] = useState(null);
-  const [contacts, setContacts] = useState(null);
+  // const [contacts, setContacts] = useState(null);
 
   let dataList = [];
   useEffect(() => {
     setLoading(true);
-    const get = async () => {
-      const gotContacts = await getContacts();
-      setContacts(gotContacts);
-    };
-    get();
+    getContacts();
+
     setLoading(false);
     // es-lint-disable-next-line
   }, []);

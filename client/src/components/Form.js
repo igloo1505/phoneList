@@ -1,14 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import M from "materialize-css/dist/js/materialize.min";
-import { validateNumber, postContact } from "../routing";
+import ContactContext from "../context/contactContext";
+import { validateNumber } from "../routing";
 
 const Form = ({ setAdmin }) => {
+  const contactContext = useContext(ContactContext);
+  const { addContact, getContacts } = contactContext;
+
+  useEffect(() => {
+    console.log("getting contacts called");
+    contactContext.getContacts();
+    // es-lint-disable-next-line
+  }, []);
+
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [sponsor, setSponsor] = useState(false);
   const [meeting, setMeeting] = useState("which");
 
-  const onSubmit = () => {
+  // const ph = validateNumber(phone);
+
+  // let newContact = {
+  //   name: name,
+  //   phone: phone,
+  //   sponsor: sponsor,
+  //   meeting: meeting
+  // };
+
+  const onSubmit = e => {
+    e.preventDefault();
     if (name === "Showme") {
       console.log("Registered Admin");
       setAdmin(true);
@@ -18,14 +38,17 @@ const Form = ({ setAdmin }) => {
       return;
     }
     const ph = validateNumber(phone);
+
     let newContact = {
       name: name,
       phone: ph,
       sponsor: sponsor,
       meeting: meeting
     };
+
     console.log({ ...newContact });
-    postContact(newContact);
+    addContact(newContact);
+    // postContact(newContact);
     setName("");
     setPhone("");
     setSponsor(false);
@@ -33,7 +56,7 @@ const Form = ({ setAdmin }) => {
   };
   return (
     <div className="container" style={{ width: "80%", marginTop: "80px" }}>
-      <form className="col s12" id="UserForm">
+      <form className="col s12" id="UserForm" onSubmit={onSubmit}>
         <div className="row">
           <div className="input-field col s12" style={{ paddingRight: "50px" }}>
             <i className="material-icons prefix">account_circle</i>
@@ -97,7 +120,6 @@ const Form = ({ setAdmin }) => {
             }}
             type="submit"
             name="submit"
-            onClick={onSubmit}
           >
             Submit
           </button>

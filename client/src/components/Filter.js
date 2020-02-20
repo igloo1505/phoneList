@@ -21,7 +21,7 @@ const Filter = ({ dataList, setFiltered, contacts }) => {
         list="meetingList"
         onChange={onChange}
       />
-      <label for="filter">Filter By Meeting</label>
+      <label htmlFor="filter">Filter By Meeting</label>
       <datalist id="meetingList">
         {dataList.map((item, key) => (
           <option key={key} value={item} />

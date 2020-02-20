@@ -5,6 +5,7 @@ const Contact = require("../models/Contact");
 router.post("/", async (req, res) => {
   console.log(req.body);
   console.log("reached backend");
+  console.log("Validate phone here");
   const { name, phone, sponsor, meeting } = req.body;
   try {
     const newContact = new Contact({
@@ -14,7 +15,7 @@ router.post("/", async (req, res) => {
       meeting
     });
     const addContact = await newContact.save();
-    res.send(addContact);
+    res.json(addContact);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("failed at Post backend");
