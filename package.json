@@ -25,7 +25,7 @@
     "server": "Node Server.js",
     "local": "nodemon Server.js",
     "dev": "concurrently \"npm run startLocal\" \"npm run local\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "eslintConfig": {
     "extends": "react-app"
