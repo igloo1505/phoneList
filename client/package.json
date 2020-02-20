@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "client": "npm start --prefix client",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "author": "",
   "license": "ISC",
@@ -14,5 +18,6 @@
     "express": "^4.17.1",
     "materialize-css": "^1.0.0",
     "mongoose": "^5.9.1"
-  }
+  },
+  "proxy": "http://localhost:5000"
 }

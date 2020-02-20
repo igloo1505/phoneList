@@ -20,11 +20,12 @@
     "start": "node Server.js",
     "startLocal": "react-scripts start",
     "build": "react-scripts build",
+    "client": "npm start --prefix client",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "Node Server.js",
     "local": "nodemon Server.js",
-    "dev": "concurrently \"npm run startLocal\" \"npm run local\"",
+    "dev": "concurrently \"npm run client\" \"npm run local\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "eslintConfig": {
@@ -45,6 +46,5 @@
   "devDependencies": {
     "concurrently": "^5.1.0",
     "nodemon": "^2.0.2"
-  },
-  "proxy": "http://localhost:5000"
+  }
 }
