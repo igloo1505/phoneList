@@ -6,7 +6,7 @@ const ContactItem = ({ contact }) => {
       <span>{contact.name}</span>
       <br />
       <span style={{ paddingLeft: "20px" }}>{contact.phone}</span>
-      {contact.sponsor ? (
+      {contact.type === "personal" ? (
         <i className="material-icons right green-text">check_circle</i>
       ) : (
         <span style={{ fontSize: "2rem" }}> </span>

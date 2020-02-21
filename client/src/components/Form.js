@@ -15,7 +15,7 @@ const Form = ({ setAdmin }) => {
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [sponsor, setSponsor] = useState(false);
+
   const [type, setType] = useState("which");
 
   const onSubmit = e => {
@@ -33,16 +33,13 @@ const Form = ({ setAdmin }) => {
     let newContact = {
       name: name,
       phone: ph,
-      sponsor: sponsor,
       type: type
     };
 
     console.log({ ...newContact });
     addContact(newContact);
-    // postContact(newContact);
     setName("");
     setPhone("");
-    setSponsor(false);
     setType("which");
   };
   const formStyle = {
