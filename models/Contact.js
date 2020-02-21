@@ -9,12 +9,7 @@ const ContactSchema = mongoose.Schema({
     type: Number,
     required: true
   },
-  sponsor: {
-    type: Boolean,
-    required: true,
-    default: false
-  },
-  meeting: {
+  type: {
     type: String,
     required: true
   }

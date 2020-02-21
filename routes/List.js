@@ -6,13 +6,12 @@ router.post("/", async (req, res) => {
   console.log(req.body);
   console.log("reached backend");
   console.log("Validate phone here");
-  const { name, phone, sponsor, meeting } = req.body;
+  const { name, phone, type } = req.body;
   try {
     const newContact = new Contact({
       name,
       phone,
-      sponsor,
-      meeting
+      type
     });
     const addContact = await newContact.save();
     res.json(addContact);

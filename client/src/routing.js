@@ -58,8 +58,8 @@ export const getContacts = async () => {
 export const getDatalist = contacts => {
   let uniqueDataList = [];
   for (var i = 0; i < contacts.length; i++) {
-    if (uniqueDataList.includes(contacts[i].meeting) === false) {
-      uniqueDataList.push(contacts[i].meeting);
+    if (uniqueDataList.includes(contacts[i].type) === false) {
+      uniqueDataList.push(contacts[i].type);
     }
   }
   return uniqueDataList;

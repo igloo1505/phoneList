@@ -16,16 +16,7 @@ const Form = ({ setAdmin }) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [sponsor, setSponsor] = useState(false);
-  const [meeting, setMeeting] = useState("which");
-
-  // const ph = validateNumber(phone);
-
-  // let newContact = {
-  //   name: name,
-  //   phone: phone,
-  //   sponsor: sponsor,
-  //   meeting: meeting
-  // };
+  const [type, setType] = useState("which");
 
   const onSubmit = e => {
     e.preventDefault();
@@ -33,8 +24,8 @@ const Form = ({ setAdmin }) => {
       console.log("Registered Admin");
       setAdmin(true);
       return;
-    } else if (meeting === "which") {
-      M.toast({ html: "Pick a meeting bro." });
+    } else if (type === "which") {
+      M.toast({ html: "Pick a type bro." });
       return;
     }
     const ph = validateNumber(phone);
@@ -43,7 +34,7 @@ const Form = ({ setAdmin }) => {
       name: name,
       phone: ph,
       sponsor: sponsor,
-      meeting: meeting
+      type: type
     };
 
     console.log({ ...newContact });
@@ -52,10 +43,17 @@ const Form = ({ setAdmin }) => {
     setName("");
     setPhone("");
     setSponsor(false);
-    setMeeting("which");
+    setType("which");
   };
+  const formStyle = {
+    width: "80%",
+    marginTop: "80px",
+    backgroundColor: "#fff",
+    padding: "20px"
+  };
+
   return (
-    <div className="container" style={{ width: "80%", marginTop: "80px" }}>
+    <div className="container" style={formStyle}>
       <form className="col s12" id="UserForm" onSubmit={onSubmit}>
         <div className="row">
           <div className="input-field col s12" style={{ paddingRight: "50px" }}>
@@ -85,30 +83,18 @@ const Form = ({ setAdmin }) => {
             style={{ paddingRight: "50px", paddingLeft: "50px" }}
           >
             <select
-              id="meeting"
-              value={meeting}
-              onChange={e => setMeeting(e.target.value)}
+              id="type"
+              value={type}
+              onChange={e => setType(e.target.value)}
             >
               <option value="which" disabled>
-                Which meeting?
+                Contact Type?
               </option>
-              <option value="SNS">SNS</option>
-              <option value="Commitment">Thursday Commitment</option>
-              <option value="YoungPeoples">Young Peoples</option>
+              <option value="Personal">Personal</option>
+              <option value="School">School</option>
+              <option value="Work">Work</option>
             </select>
           </div>
-          <p className="col s12 center-align">
-            <label htmlFor="sponsor">
-              <input
-                type="checkbox"
-                id="sponsor"
-                value={sponsor}
-                onChange={e => setSponsor(!sponsor)}
-                checked={sponsor}
-              />
-              <span>Can you sponsor?</span>
-            </label>
-          </p>
 
           <button
             className="btn waves-effect waves-light"

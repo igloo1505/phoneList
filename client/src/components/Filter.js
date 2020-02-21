@@ -7,7 +7,7 @@ const Filter = ({ dataList, setFiltered, contacts }) => {
     // setSearch(e.target.value);
     let v = e.target.value;
     const regex = new RegExp(v, "gi");
-    let f = contacts.filter(contact => contact.meeting.match(regex));
+    let f = contacts.filter(contact => contact.type.match(regex));
     setFiltered(f);
     console.log(f);
   };
@@ -17,12 +17,12 @@ const Filter = ({ dataList, setFiltered, contacts }) => {
       <input
         type="text"
         id="filter"
-        placeholder="Filter By Meeting"
-        list="meetingList"
+        placeholder="Filter By type"
+        list="typeList"
         onChange={onChange}
       />
-      <label htmlFor="filter">Filter By Meeting</label>
-      <datalist id="meetingList">
+      <label htmlFor="filter">Filter By type</label>
+      <datalist id="typeList">
         {dataList.map((item, key) => (
           <option key={key} value={item} />
         ))}
